@@ -1,6 +1,6 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
-import { Services } from "@/components/Services";
+import { Footer } from '@/components/Footer'
+import { Header } from '@/components/Header'
+import { Services } from '@/components/Services'
 
 import { FaSignal, FaHome, FaClipboardList, FaClipboardCheck, FaInfinity, FaRegCreditCard, FaCar, FaKey, FaCheckCircle, FaTree, FaBuilding, FaDollarSign } from "react-icons/fa"
 
