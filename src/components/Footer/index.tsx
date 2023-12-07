@@ -8,7 +8,7 @@ export function Footer() {
          <h1 className="text-zinc-500 font-medium -mt-6 left-5 absolute italic">Em breve</h1>
          <Link href={'https://norwe.com.br'} className="text-title-service font-medium mt-2">Solicitar meu cartão físico</Link>
 
-         <Image className="rounded-lg mt-8" src={'/logo_footernw.png'} alt="Mockup credit Norwe" width={100} height={17} />
+         <Image className="rounded-lg mt-8 opacity-50" src={'/logo_footernw.png'} alt="Mockup credit Norwe" width={100} height={17} />
       </div>
    )
 }
