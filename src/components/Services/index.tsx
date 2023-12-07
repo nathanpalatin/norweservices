@@ -1,7 +1,6 @@
-import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react';
-import { IconType } from 'react-icons';
+import React from 'react'
+import { IconType } from 'react-icons'
 
 interface ServiceProps {
    title: string;
@@ -12,7 +11,6 @@ interface ServiceProps {
 
 export function Services(props: ServiceProps) {
    return (
-      
       <Link href={props.link} target="_parent" className='flex flex-col items-center'>
          <div className="flex flex-col justify-center w-32 items-center h-28 bg-service rounded-lg shadow-2xl">
          {React.createElement(props.icon, { size: 54, color: '#961B47' })}
