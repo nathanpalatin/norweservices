@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         'service': '#F6F6F6',
-        'title-servce': '#961B47'
+        'title-service': '#961B47'
       },
     },
   },

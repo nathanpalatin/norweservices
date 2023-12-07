@@ -5,8 +5,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Norwe Banking',
-  description: 'Norwe',
+  title: 'Serviços - Norwe Banking',
+  description: 'Aqui estão todos os serviços que Norwe Banking pode te ofecerer.',
 }
 
 export default function RootLayout({
