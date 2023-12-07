@@ -11,7 +11,7 @@ export default function Home() {
       <Header />
 
       <div className="container mx-auto mt-8 mb-16 p-4 sm:p-8">
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-4">
           <Services link="https://norwe.com.br/" title="Investimentos" icon={FaSignal} />
           <Services link="https://norwe.com.br/" title="Consórcio" icon={FaClipboardList}  />
           <Services link="https://norwe.com.br/" title="Seguros" icon={FaClipboardCheck}  />
