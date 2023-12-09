@@ -9,8 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'service': '#F6F6F6',
-        'title-service': '#961B47'
+        service: '#F6F6F6',
+        'title-service': '#961B47',
       },
     },
   },
