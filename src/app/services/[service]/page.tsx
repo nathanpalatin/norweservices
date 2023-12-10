@@ -1,0 +1,330 @@
+'use client'
+
+import { useState } from 'react'
+
+import { useRouter } from 'next/navigation'
+
+import { Input } from '@/components/Input'
+import { Button } from '@/components/Button'
+import { Header } from '@/components/Header'
+import { Select } from '@/components/Select'
+
+interface ServiceProps {
+  params: {
+    service: string
+  }
+}
+
+export default function Service({ params }: ServiceProps) {
+  const [selectedValue, setSelectedValue] = useState('')
+
+  const router = useRouter()
+
+  const options = [
+    'Automóvel',
+    'Imóvel',
+    'Moto',
+    'Placa solar',
+    'Viagem',
+    'Cirurgias',
+    'Obras',
+    'Agro',
+  ]
+
+  const optionsb = [
+    'Automóvel',
+    'Fiança',
+    'Imóvel',
+    'Moto',
+    'Vida',
+    'Saúde',
+    'Viagem',
+    'Empresarial',
+    'Obras',
+    'Agro',
+  ]
+  const options2 = ['Pessoa Física (PF)', 'Pessoa Jurídica (PJ)']
+  const options3 = [
+    'Privado',
+    'Servidor Público',
+    'INSS',
+    'Militar',
+    'Convênio com banco autorizado',
+  ]
+
+  const options4 = [
+    'Crédito rural',
+    'Estruturação  de CRA',
+    'Estruturação de FIAGRO',
+    'Financiamento',
+    'Consórcio',
+    'Seguro',
+  ]
+
+  const handleSubmit = () => {
+    router.push('/success')
+  }
+
+  const handleSelectChange = (value: string) => {
+    setSelectedValue(value)
+  }
+
+  const renderServiceContent = () => {
+    switch (params.service) {
+      case 'Investimentos':
+        return (
+          <Input
+            label={
+              'Por gentileza, diga-nos qual o valor inicial que você pretende investir:'
+            }
+            type={'text'}
+            placeholder="R$"
+            name="investimento"
+          />
+        )
+
+      case 'consorcio':
+        return (
+          <>
+            <Select
+              label="Qual tipo de consórcio você está buscando?"
+              placeholder="Selecione..."
+              value={selectedValue}
+              options={options}
+              onChange={handleSelectChange}
+            />
+            <Input
+              label="Por gentileza, diga-nos qual o valor da carta que
+              está buscando?"
+              type={'text'}
+              placeholder="R$"
+              name={'seila'}
+            />
+          </>
+        )
+      case 'seguros':
+        return (
+          <>
+            <Select
+              label="Qual tipo de seguro você está buscando?"
+              placeholder="Selecione..."
+              value={selectedValue}
+              options={optionsb}
+              onChange={handleSelectChange}
+            />
+            <Input
+              label="Por gentileza, diga-nos qual o valor do bem que 
+              você busca proteger?"
+              type={'text'}
+              placeholder="R$"
+              name={'seila'}
+            />
+          </>
+        )
+      case 'planejamento-de-vida':
+        return (
+          <Input
+            label={
+              'Por gentileza, diga-nos qual o valor total de seu patrimônio:'
+            }
+            type={'text'}
+            placeholder="R$"
+            name="investimento"
+          />
+        )
+      case 'credito-pf-pj':
+        return (
+          <>
+            <Select
+              label="O crédito é para Pessoa Física ou Jurídica?"
+              placeholder="Selecione..."
+              value={selectedValue}
+              options={options2}
+              onChange={handleSelectChange}
+            />
+            <Input
+              label="Por gentileza, diga-nos qual o valor do bem que 
+            você busca proteger?"
+              type={'text'}
+              placeholder="R$"
+              name={'seila'}
+            />
+          </>
+        )
+      case 'financiamento-veicular':
+        return (
+          <Input
+            label="Por gentileza, diga-nos qual o valor do veículo
+            que deseja financiar:"
+            type={'text'}
+            placeholder="R$"
+            name={'seila'}
+          />
+        )
+      case 'financiamento-imobiliario':
+        return (
+          <Input
+            label="Por gentileza, diga-nos qual o valor do imóvel
+            que deseja financiar:"
+            type={'text'}
+            placeholder="R$"
+            name={'seila'}
+          />
+        )
+      case 'consignado':
+        return (
+          <>
+            <Select
+              label="Qual tipo de Consignado você procura?"
+              placeholder="Selecione..."
+              value={selectedValue}
+              options={options3}
+              onChange={handleSelectChange}
+            />
+            <Input
+              label="Por gentileza, diga-nos qual o valor da carta que
+            está buscando?"
+              type={'text'}
+              placeholder="R$"
+              name={'seila'}
+            />
+          </>
+        )
+      case 'servicos-ao-agronegocio':
+        return (
+          <>
+            <Select
+              label="Qual tipo de Serviço Agro você busca?"
+              placeholder="Selecione..."
+              value={selectedValue}
+              options={options4}
+              onChange={handleSelectChange}
+            />
+            <Input
+              label="Qual tipo de Serviço Agro você busca?"
+              type={'text'}
+              placeholder="R$"
+              name={'seila'}
+            />
+          </>
+        )
+      case 'home-equity':
+        return (
+          <Input
+            label="Por gentileza, diga-nos qual o valor do imóvel
+            que você deseja colocar como garantia:"
+            type={'text'}
+            placeholder="R$"
+            name={'seila'}
+          />
+        )
+      case 'investimento-imobiliario':
+        return (
+          <Input
+            label="Por gentileza, diga-nos qual o valor do imóvel
+            que você está procurando para comprar:"
+            type={'text'}
+            placeholder="R$"
+            name={'seila'}
+          />
+        )
+      case 'cambio':
+        return (
+          <Input
+            label="Por gentileza, diga-nos qual o valor da operação
+            que deseja realizar:"
+            type={'text'}
+            placeholder="R$"
+            name={'seila'}
+          />
+        )
+
+      case 'cartao':
+        return (
+          <>
+            <p className="font-semibold text-sm text-zinc-500 mb-4">
+              Ficamos felizes que deseja ter nosso cartão.
+            </p>
+            <p className="font-semibold text-sm text-zinc-500 mb-4">
+              Neste momento estamos cadastrando nossos clientes interessados em
+              uma fila de espera.
+            </p>
+            <p className="font-semibold text-sm text-zinc-500 mb-4">
+              Se você deseja entrar na fila de espera, por gentileza, insira as
+              informações ababixo:
+            </p>
+          </>
+        )
+    }
+  }
+  return (
+    <>
+      <Header
+        title={
+          params.service === 'cartao'
+            ? 'Quase lá. Nos aguarde...'
+            : 'Continuando... \nNos conte mais sobre.'
+        }
+      />
+
+      <div className="container mx-auto mt-2 p-12 sm:p-8">
+        <h1>Você selecionou:</h1>
+        <h1 className="text-title-service text-lg font-semibold">
+          {params.service === 'cartao' && 'Cartão Físico - Norwe Banking'}
+          {params.service === 'cambio' && 'Câmbio'}
+          {params.service === 'investimento-imobiliario' &&
+            'Investimento Imobiliário'}
+          {params.service === 'consorcio' && 'Consórcios'}
+          {params.service === 'investimentos' && 'Investimentos'}
+          {params.service === 'home-equity' && 'Home Equity'}
+          {params.service === 'consignado' && 'Crédito Consignado'}
+          {params.service === 'financiamento-imovel' &&
+            'Financiamento de Imóvel'}
+          {params.service === 'financiamento-veiculo' &&
+            'Financiamento de Veículo'}
+          {params.service === 'credito-pf-pj' && 'Crédito PF/PJ'}
+          {params.service === 'planejamento-de-vida' && 'Planejamento de Vida'}
+          {params.service === 'seguro' && 'Seguro'}
+        </h1>
+        <div className=" mt-5 flex flex-col gap-4 ">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault()
+              handleSubmit()
+            }}
+          >
+            {renderServiceContent()}
+
+            <Input
+              label="Precisamos também que confirme seu CPF ou
+              CNPJ de sua conta Norwe:"
+              type={'text'}
+              placeholder="000.000.000-00"
+              name="cpf"
+            />
+            <Input
+              label="Confirme também seu número de sua conta
+              bancária da Norwe Banking:"
+              type={'text'}
+              placeholder="0000-0"
+              name="conta"
+            />
+            <p className="text-zinc-400 text-xs">
+              Caso você não souber, você pode retornar ao aplicativo da Norwe e
+              verificar no topo da tela.
+            </p>
+
+            <Button
+              title={
+                params.service === 'cartao'
+                  ? 'Entrar na fila de espera'
+                  : 'Enviar informações'
+              }
+              type="submit"
+            />
+          </form>
+        </div>
+      </div>
+    </>
+  )
+}

@@ -11,12 +11,7 @@ interface ServiceProps {
 
 export function Services(props: ServiceProps) {
   return (
-    <Link
-      href={props.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex flex-col items-center"
-    >
+    <Link href={props.link} className="flex flex-col items-center">
       <div className="flex flex-col justify-center w-28 mb-3 items-center p-6 bg-service rounded-lg shadow-2xl">
         {React.createElement(props.icon, { size: 48, color: '#961B47' })}
       </div>

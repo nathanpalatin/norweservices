@@ -1,6 +1,7 @@
-import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { Services } from '@/components/Services'
+import Image from 'next/image'
+import Link from 'next/link'
 
 import {
   FaSignal,
@@ -19,75 +20,85 @@ import {
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <Header />
+    <>
+      <Header
+        title={`Olá! Selecione abaixo \no serviço que está buscando...`}
+      />
 
-      <div className="container mx-auto mt-8 mb-16 p-4 sm:p-8">
-        <div className="grid grid-cols-3 gap-4">
-          <Services
-            link="https://norwe.com.br/"
-            title="Investimentos"
-            icon={FaSignal}
-          />
-          <Services
-            link="https://norwe.com.br/"
-            title="Consórcio"
-            icon={FaClipboardCheck}
-          />
-          <Services
-            link="https://norwe.com.br/"
-            title="Seguros"
-            icon={FaShieldAlt}
-          />
-          <Services
-            link="https://norwe.com.br/"
-            title="Planejamento de Vida"
-            icon={FaInfinity}
-          />
-          <Services
-            link="https://norwe.com.br/"
-            title="Crédito PF/PJ"
-            icon={FaRegCreditCard}
-          />
-          <Services
-            link="https://norwe.com.br/"
-            title="Financiamento Veicular"
-            icon={FaCar}
-          />
-          <Services
-            link="https://norwe.com.br/"
-            title="Financiamento Imobiliário"
-            icon={FaKey}
-          />
-          <Services
-            link="https://norwe.com.br/"
-            title="Consignado"
-            icon={FaCheckCircle}
-          />
-          <Services
-            link="https://norwe.com.br/"
-            title="Serviços ao Agronegócio"
-            icon={FaEnvira}
-          />
-          <Services
-            link="https://norwe.com.br/"
-            title="Home Equity"
-            icon={FaBuilding}
-          />
-          <Services
-            link="https://norwe.com.br/"
-            title="Investimento Imobiliário"
-            icon={FaHome}
-          />
-          <Services
-            link="https://norwe.com.br/"
-            title="Câmbio"
-            icon={FaDollarSign}
-          />
-        </div>
+      <div className="mt-12 grid grid-cols-3 gap-4">
+        <Services
+          link="/services/Investimentos"
+          title="Investimentos"
+          icon={FaSignal}
+        />
+        <Services
+          link="/services/consorcio"
+          title="Consórcio"
+          icon={FaClipboardCheck}
+        />
+        <Services link="/services/seguros" title="Seguros" icon={FaShieldAlt} />
+        <Services
+          link="/services/planejamento-de-vida"
+          title="Planejamento de Vida"
+          icon={FaInfinity}
+        />
+        <Services
+          link="/services/credito-pf-pj"
+          title="Crédito PF/PJ"
+          icon={FaRegCreditCard}
+        />
+        <Services
+          link="/services/financiamento-veicular"
+          title="Financiamento Veicular"
+          icon={FaCar}
+        />
+        <Services
+          link="/services/financiamento-imobiliario"
+          title="Financiamento Imobiliário"
+          icon={FaKey}
+        />
+        <Services
+          link="/services/consignado"
+          title="Consignado"
+          icon={FaCheckCircle}
+        />
+        <Services
+          link="/services/servicos-ao-agronegocio"
+          title="Serviços ao Agronegócio"
+          icon={FaEnvira}
+        />
+        <Services
+          link="/services/home-equity"
+          title="Home Equity"
+          icon={FaBuilding}
+        />
+        <Services
+          link="/services/investimento-imobiliario"
+          title="Investimento Imobiliário"
+          icon={FaHome}
+        />
+        <Services link="/services/cambio" title="Câmbio" icon={FaDollarSign} />
       </div>
 
-      <Footer />
-    </div>
+      <div className="relative flex justify-center flex-col items-center gap-3 mb-3 mt-12">
+        <Image
+          className="rounded-lg"
+          src={'/mockup_creditcardok.png'}
+          quality={100}
+          alt="Mockup credit Norwe"
+          width={340}
+          height={100}
+        />
+        <h1 className="text-zinc-500 font-medium mt-5 left-20 absolute italic">
+          Em breve
+        </h1>
+        <Link
+          href={'/services/cartao'}
+          className="text-title-service font-medium mt-2"
+        >
+          Solicitar meu cartão físico
+        </Link>
+      </div>
+    </>
   )
 }
