@@ -55,6 +55,7 @@ export function Header({ title, variant }: HeaderProps) {
         <Image
           src={'/top_bar.png'}
           alt="Top Bar"
+          priority
           className="right-0 -bottom-1 absolute"
           width={260}
           height={30}
