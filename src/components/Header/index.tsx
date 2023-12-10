@@ -44,7 +44,7 @@ export function Header({ title, variant }: HeaderProps) {
             alt="Header"
             priority
             className="absolute
-            left-40 -bottom-10"
+            left-44 -bottom-10"
             width={80}
             height={80}
           />
