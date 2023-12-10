@@ -34,7 +34,7 @@ export function Header({ title, variant }: HeaderProps) {
         font-bold
         whitespace-pre-wrap
         text-center absolute
-        left-36 bottom-14
+        left-32 bottom-14
         flex-wrap"
           >
             {title}
@@ -44,7 +44,7 @@ export function Header({ title, variant }: HeaderProps) {
             alt="Header"
             priority
             className="absolute
-            left-48 -bottom-10"
+            left-40 -bottom-10"
             width={80}
             height={80}
           />
