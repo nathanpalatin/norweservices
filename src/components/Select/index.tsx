@@ -15,7 +15,6 @@ export function Select({
 }: SelectProps) {
   return (
     <div className="mb-5">
-      <h1 className="text-title-service text-sm font-medium pb-2 ">{label}</h1>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}

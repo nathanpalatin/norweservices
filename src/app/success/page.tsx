@@ -7,7 +7,7 @@ export default function Success() {
 
       <div className="container mx-auto mt-2 p-12 sm:p-8">
         <h1>Agora é só aguardar.</h1>
-        <h1 className="text-title-service text-2xl font-semibold">
+        <h1 className="text-title-service text-xl font-semibold">
           Recebemos suas informações
         </h1>
         <h1 className="text-2xl font-semibold text-zinc-500 mt-7">

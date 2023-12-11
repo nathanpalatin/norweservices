@@ -1,72 +1,32 @@
 'use client'
 
-import { useState } from 'react'
-
 import { useRouter } from 'next/navigation'
 
 import { Input } from '@/components/Input'
 import { Button } from '@/components/Button'
 import { Header } from '@/components/Header'
-import { Select } from '@/components/Select'
-
 interface ServiceProps {
   params: {
     service: string
   }
 }
 
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
 export default function Service({ params }: ServiceProps) {
-  const [selectedValue, setSelectedValue] = useState('')
 
   const router = useRouter()
 
-  const options = [
-    'Automóvel',
-    'Imóvel',
-    'Moto',
-    'Placa solar',
-    'Viagem',
-    'Cirurgias',
-    'Obras',
-    'Agro',
-  ]
-
-  const optionsb = [
-    'Automóvel',
-    'Fiança',
-    'Imóvel',
-    'Moto',
-    'Vida',
-    'Saúde',
-    'Viagem',
-    'Empresarial',
-    'Obras',
-    'Agro',
-  ]
-  const options2 = ['Pessoa Física (PF)', 'Pessoa Jurídica (PJ)']
-  const options3 = [
-    'Privado',
-    'Servidor Público',
-    'INSS',
-    'Militar',
-    'Convênio com banco autorizado',
-  ]
-
-  const options4 = [
-    'Crédito rural',
-    'Estruturação  de CRA',
-    'Estruturação de FIAGRO',
-    'Financiamento',
-    'Consórcio',
-    'Seguro',
-  ]
-
   const handleSubmit = () => {
     router.push('/success')
-  }
-
-  const handleSelectChange = (value: string) => {
-    setSelectedValue(value)
   }
 
   const renderServiceContent = () => {
@@ -86,13 +46,29 @@ export default function Service({ params }: ServiceProps) {
       case 'consorcio':
         return (
           <>
-            <Select
-              label="Qual tipo de consórcio você está buscando?"
-              placeholder="Selecione..."
-              value={selectedValue}
-              options={options}
-              onChange={handleSelectChange}
-            />
+
+            <h1 className="text-title-service text-sm font-medium pb-2 ">
+              Qual tipo de consórcio você está buscando?
+            </h1>
+
+            <Select>
+              <SelectTrigger className="w-full mb-5 border-zinc-400 p-6 bg-zinc-100">
+                <SelectValue placeholder="Selecione..." />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Consórcio</SelectLabel>
+                  <SelectItem value="Automóvel">Automóvel</SelectItem>
+                  <SelectItem value="Imóvel">Imóvel</SelectItem>
+                  <SelectItem value="Moto">Moto</SelectItem>
+                  <SelectItem value="Placa solar">Placa solar</SelectItem>
+                  <SelectItem value="Viagem">Viagem</SelectItem>
+                  <SelectItem value="Cirurgias">Cirurgias</SelectItem>
+                  <SelectItem value="Obras">Obras</SelectItem>
+                  <SelectItem value="Agro">Agro</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             <Input
               label="Por gentileza, diga-nos qual o valor da carta que
               está buscando?"
@@ -105,19 +81,35 @@ export default function Service({ params }: ServiceProps) {
       case 'seguros':
         return (
           <>
-            <Select
-              label="Qual tipo de seguro você está buscando?"
-              placeholder="Selecione..."
-              value={selectedValue}
-              options={optionsb}
-              onChange={handleSelectChange}
-            />
+            <h1 className="text-title-service text-sm font-medium pb-2 ">
+              Qual tipo de seguro você está buscando?
+            </h1>
+
+            <Select>
+              <SelectTrigger className="w-full mb-5 border-zinc-400 p-6 bg-zinc-100">
+                <SelectValue placeholder="Selecione..." />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Consórcio</SelectLabel>
+                  <SelectItem value="Automóvel">Automóvel</SelectItem>
+                  <SelectItem value="Imóvel">Imóvel</SelectItem>
+                  <SelectItem value="Moto">Moto</SelectItem>
+                  <SelectItem value="Vida">Vida</SelectItem>
+                  <SelectItem value="Saúde">Saúde</SelectItem>
+                  <SelectItem value="Viagem">Viagem</SelectItem>
+                  <SelectItem value="Empresarial">Empresarial</SelectItem>
+                  <SelectItem value="Obras">Obras</SelectItem>
+                  <SelectItem value="Agro">Agro</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             <Input
               label="Por gentileza, diga-nos qual o valor do bem que 
               você busca proteger?"
               type={'text'}
               placeholder="R$"
-              name={'seila'}
+              name="valor"
             />
           </>
         )
@@ -135,13 +127,21 @@ export default function Service({ params }: ServiceProps) {
       case 'credito-pf-pj':
         return (
           <>
-            <Select
-              label="O crédito é para Pessoa Física ou Jurídica?"
-              placeholder="Selecione..."
-              value={selectedValue}
-              options={options2}
-              onChange={handleSelectChange}
-            />
+            <h1 className="text-title-service text-sm font-medium pb-2 ">
+              O crédito é para Pessoa Física ou Jurídica?
+            </h1>
+            <Select>
+              <SelectTrigger className="w-full mb-5 border-zinc-400 p-6 bg-zinc-100">
+                <SelectValue placeholder="Selecione..." />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Crédito</SelectLabel>
+                  <SelectItem value="Pessoa Física (PF)">Pessoa Física (PF)</SelectItem>
+                  <SelectItem value="Pessoa Jurídica (PJ)">Pessoa Jurídica (PJ)</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             <Input
               label="Por gentileza, diga-nos qual o valor do bem que 
             você busca proteger?"
@@ -174,13 +174,25 @@ export default function Service({ params }: ServiceProps) {
       case 'consignado':
         return (
           <>
-            <Select
-              label="Qual tipo de Consignado você procura?"
-              placeholder="Selecione..."
-              value={selectedValue}
-              options={options3}
-              onChange={handleSelectChange}
-            />
+
+            <h1 className="text-title-service text-sm font-medium pb-2 ">
+              Qual tipo de Consignado você procura?
+            </h1>
+            <Select>
+              <SelectTrigger className="w-full mb-5 border-zinc-400 p-6 bg-zinc-100">
+                <SelectValue placeholder="Selecione..." />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Consignado</SelectLabel>
+                  <SelectItem value="Privado">Privado</SelectItem>
+                  <SelectItem value="Servidor Público">Servidor Público</SelectItem>
+                  <SelectItem value="INSS">INSS</SelectItem>
+                  <SelectItem value="Militar">Militar</SelectItem>
+                  <SelectItem value="Convênio com banco autorizado">Convênio com banco autorizado</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             <Input
               label="Por gentileza, diga-nos qual o valor da carta que
             está buscando?"
@@ -193,13 +205,25 @@ export default function Service({ params }: ServiceProps) {
       case 'servicos-ao-agronegocio':
         return (
           <>
-            <Select
-              label="Qual tipo de Serviço Agro você busca?"
-              placeholder="Selecione..."
-              value={selectedValue}
-              options={options4}
-              onChange={handleSelectChange}
-            />
+            <h1 className="text-title-service text-sm font-medium pb-2 ">
+              Qual tipo de Serviço Agro você busca?
+            </h1>
+            <Select>
+              <SelectTrigger className="w-full mb-5 border-zinc-400 p-6 bg-zinc-100">
+                <SelectValue placeholder="Selecione..." />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Serviço Agro</SelectLabel>
+                  <SelectItem value="Crédito rural">Crédito rural</SelectItem>
+                  <SelectItem value="Estruturação de CRA">Estruturação de CRA</SelectItem>
+                  <SelectItem value="Estruturação de FIAGRO">Estruturação de FIAGRO</SelectItem>
+                  <SelectItem value="Financiamento">Financiamento</SelectItem>
+                  <SelectItem value="Consórcio">Consórcio</SelectItem>
+                  <SelectItem value="Seguro">Seguro</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             <Input
               label="Qual tipo de Serviço Agro você busca?"
               type={'text'}
