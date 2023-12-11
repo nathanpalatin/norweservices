@@ -5,11 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Input } from '@/components/Input'
 import { Button } from '@/components/Button'
 import { Header } from '@/components/Header'
-interface ServiceProps {
-  params: {
-    service: string
-  }
-}
+
 
 import {
   Select,
@@ -21,6 +17,12 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
+interface ServiceProps {
+  params: {
+    service: string
+  }
+}
+
 export default function Service({ params }: ServiceProps) {
 
   const router = useRouter()
@@ -31,7 +33,7 @@ export default function Service({ params }: ServiceProps) {
 
   const renderServiceContent = () => {
     switch (params.service) {
-      case 'Investimentos':
+      case 'investimentos':
         return (
           <Input
             label={
@@ -302,13 +304,14 @@ export default function Service({ params }: ServiceProps) {
           {params.service === 'investimentos' && 'Investimentos'}
           {params.service === 'home-equity' && 'Home Equity'}
           {params.service === 'consignado' && 'Crédito Consignado'}
-          {params.service === 'financiamento-imovel' &&
+          {params.service === 'financiamento-imobiliario' &&
             'Financiamento de Imóvel'}
-          {params.service === 'financiamento-veiculo' &&
+          {params.service === 'financiamento-veicular' &&
             'Financiamento de Veículo'}
           {params.service === 'credito-pf-pj' && 'Crédito PF/PJ'}
           {params.service === 'planejamento-de-vida' && 'Planejamento de Vida'}
-          {params.service === 'seguro' && 'Seguro'}
+          {params.service === 'seguros' && 'Seguros'}
+          {params.service === 'servicos-ao-agronegocio' && 'Serviços ao Agronegócio'}
         </h1>
         <div className=" mt-5 flex flex-col gap-4 ">
           <form

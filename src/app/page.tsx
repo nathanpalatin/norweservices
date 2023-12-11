@@ -27,7 +27,7 @@ export default function Home() {
 
       <div className="mt-12 grid grid-cols-3 gap-4">
         <Services
-          link="/services/Investimentos"
+          link="/services/investimentos"
           title="Investimentos"
           icon={FaSignal}
         />
