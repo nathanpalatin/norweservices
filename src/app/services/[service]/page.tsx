@@ -323,13 +323,16 @@ export default function Service({ params }: ServiceProps) {
             {renderServiceContent()}
             <input type="hidden" name="email" value="demanda.app@norwe.com.br" />
             <input type="hidden" name="_next" value="https://norweservices.vercel.app/success" />
+            <input type="hidden" name="_subject" value="Nova oportunidade - Norwe Serviços" />
+            <input type="hidden" name="_captcha" value="false" />
+
             <Input
-              label="Precisamos também que confirme seu CPF ou
-              CNPJ de sua conta Norwe:"
+              label="Precisamos também que confirme seu CPF ou CNPJ de sua conta Norwe:"
               type={'text'}
               placeholder="000.000.000-00"
-              name="cpf"
+              name="cpfCnpj"
             />
+
             <Input
               label="Confirme também seu número de sua conta
               bancária da Norwe Banking:"
