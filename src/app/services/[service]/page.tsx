@@ -314,14 +314,13 @@ export default function Service({ params }: ServiceProps) {
           {params.service === 'servicos-ao-agronegocio' && 'Serviços ao Agronegócio'}
         </h1>
         <div className=" mt-5 flex flex-col gap-4 ">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault()
-              handleSubmit()
-            }}
+          <form action="https://formsubmit.co/nath.palatin@gmail.com" method="POST" onSubmit={(e) => {
+            e.preventDefault()
+           
+          }}
           >
             {renderServiceContent()}
-
+            <Input label={'test'} type="email" name="email" />
             <Input
               label="Precisamos também que confirme seu CPF ou
               CNPJ de sua conta Norwe:"
