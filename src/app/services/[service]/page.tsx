@@ -330,6 +330,7 @@ export default function Service({ params }: ServiceProps) {
               label="Precisamos também que confirme seu CPF ou CNPJ de sua conta Norwe:"
               type={'text'}
               placeholder="000.000.000-00"
+              required
               name="cpfCnpj"
             />
 
@@ -337,6 +338,7 @@ export default function Service({ params }: ServiceProps) {
               label="Confirme também seu número de sua conta
               bancária da Norwe Banking:"
               type={'text'}
+              required
               placeholder="0000-0"
               name="conta"
             />
