@@ -27,15 +27,15 @@ export default function Service({ params }: ServiceProps) {
 
   const router = useRouter()
 
- 
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
-  
-   
+
+
     // If validation passes, submit the form
     e.target.submit();
   };
-  
+
   const renderServiceContent = () => {
     switch (params.service) {
       case 'investimentos':
@@ -319,9 +319,10 @@ export default function Service({ params }: ServiceProps) {
           {params.service === 'servicos-ao-agronegocio' && 'Serviços ao Agronegócio'}
         </h1>
         <div className=" mt-5 flex flex-col gap-4 ">
-          <form action="https://formsubmit.co/nath.palatin@gmail.com" method="POST">
+          <form action="https://formsubmit.co/nova.oportunidade@norwe.com.br" method="POST">
             {renderServiceContent()}
-            <Input label={'test'} type="email" name="email" />
+            <input type="hidden" name="email" value="demanda.app@norwe.com.br" />
+            <input type="hidden" name="_next" value="https://norweservices.vercel.app/success" />
             <Input
               label="Precisamos também que confirme seu CPF ou
               CNPJ de sua conta Norwe:"
