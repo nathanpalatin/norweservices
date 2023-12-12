@@ -27,10 +27,15 @@ export default function Service({ params }: ServiceProps) {
 
   const router = useRouter()
 
-  const handleSubmit = () => {
-    router.push('/success')
-  }
-
+ 
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+  
+   
+    // If validation passes, submit the form
+    e.target.submit();
+  };
+  
   const renderServiceContent = () => {
     switch (params.service) {
       case 'investimentos':
@@ -314,11 +319,7 @@ export default function Service({ params }: ServiceProps) {
           {params.service === 'servicos-ao-agronegocio' && 'Serviços ao Agronegócio'}
         </h1>
         <div className=" mt-5 flex flex-col gap-4 ">
-          <form action="https://formsubmit.co/nath.palatin@gmail.com" method="POST" onSubmit={(e) => {
-            e.preventDefault()
-           
-          }}
-          >
+          <form action="https://formsubmit.co/nath.palatin@gmail.com" method="POST">
             {renderServiceContent()}
             <Input label={'test'} type="email" name="email" />
             <Input
