@@ -25,16 +25,9 @@ interface ServiceProps {
 
 export default function Service({ params }: ServiceProps) {
 
+  //amount.charAt(0) !== 'R$' ? ('R$' + amount.substr(1)) : (amount)
+
   const router = useRouter()
-
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-
-
-    // If validation passes, submit the form
-    e.target.submit();
-  };
 
   const renderServiceContent = () => {
     switch (params.service) {
