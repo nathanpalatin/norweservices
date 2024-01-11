@@ -26,6 +26,8 @@ interface ServiceProps {
 
 export default function Service({ params }: ServiceProps) {
 
+  //amount.charAt(0) !== 'R$' ? ('R$' + amount.substr(1)) : (amount)
+
   const router = useRouter()
 
   const [mask, setMask] = useState('')
