@@ -1,12 +1,12 @@
 'use client'
 
+import { useState } from 'react'
+
 import { useRouter } from 'next/navigation'
 
 import { Input } from '@/components/Input'
 import { Button } from '@/components/Button'
 import { Header } from '@/components/Header'
-
-
 import {
   Select,
   SelectContent,
@@ -15,7 +15,8 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from '@/components/ui/select'
+import { InputMask } from '@/components/InputMask'
 
 interface ServiceProps {
   params: {
@@ -27,14 +28,12 @@ export default function Service({ params }: ServiceProps) {
 
   const router = useRouter()
 
+  const [mask, setMask] = useState('')
 
   const handleSubmit = (e: any) => {
-    e.preventDefault();
-
-
-    // If validation passes, submit the form
-    e.target.submit();
-  };
+    e.preventDefault()
+    e.target.submit()
+  }
 
   const renderServiceContent = () => {
     switch (params.service) {
@@ -83,6 +82,7 @@ export default function Service({ params }: ServiceProps) {
               placeholder="R$"
               name={'seila'}
             />
+
           </>
         )
       case 'seguros':
@@ -326,22 +326,31 @@ export default function Service({ params }: ServiceProps) {
             <input type="hidden" name="_subject" value="Nova oportunidade - Norwe Serviços" />
             <input type="hidden" name="_captcha" value="false" />
 
-            <Input
+            <InputMask
               label="Precisamos também que confirme seu CPF ou CNPJ de sua conta Norwe:"
-              type={'text'}
               placeholder="000.000.000-00"
+              mask={mask}
+              onChange={(e) => {
+                const numericValue = e.target.value.replace(/[^0-9]/g, '')
+                if (numericValue.length > 11) {
+                  setMask('99.999.999/9999-99')
+                } else {
+                  setMask('999.999.999-99')
+                }
+              }}
               required
               name="cpfCnpj"
             />
 
-            <Input
+            <InputMask
               label="Confirme também seu número de sua conta
-              bancária da Norwe Banking:"
-              type={'text'}
+             bancária da Norwe Banking:"
               required
+              mask={`9999-9`}
               placeholder="0000-0"
               name="conta"
             />
+
             <p className="text-zinc-400 text-xs">
               Caso você não souber, você pode retornar ao aplicativo da Norwe e
               verificar no topo da tela.

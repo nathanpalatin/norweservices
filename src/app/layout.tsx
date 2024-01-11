@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={inter.className}>
-        <div className="flex flex-col min-h-screen">
+        <div className="lg:w-[400px] flex justify-center items-center flex-col min-h-screen">
           <div className="container mx-auto mb-16">
             {children}
             <Footer />
