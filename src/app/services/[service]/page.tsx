@@ -15,8 +15,6 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-import { InputMask } from '@/components/InputMask'
-
 interface ServiceProps {
   params: {
     service: string
@@ -24,10 +22,21 @@ interface ServiceProps {
 }
 
 export default function Service({ params }: ServiceProps) {
+  const [valor, setValor] = useState<string>('')
+  const [conta, setConta] = useState<string>('')
   const [cpfCnpj, setCpfCnpj] = useState('')
-  const [valor, setValor] = useState()
 
-  const handleChangeCpfCnpj = (e: unknown) => {
+  const handleChangeConta = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value
+    const numericValue = inputValue.replace(/[^0-9]/g, '')
+    if (numericValue.length <= 4) {
+      setConta(numericValue)
+    } else {
+      setConta(`${numericValue.slice(0, 4)}-${numericValue.slice(4, 5)}`)
+    }
+  }
+
+  const handleChangeCpfCnpj = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value
     const numericValue = inputValue.replace(/[^0-9]/g, '')
 
@@ -44,19 +53,29 @@ export default function Service({ params }: ServiceProps) {
     }
   }
 
-  const handleFormat = (values) => {
-    const { value } = values
-    // Remova todos os caracteres não numéricos
-    const numericValue = value.replace(/[^0-9]/g, '')
-    // Formate o valor
-    const formattedValue = new Intl.NumberFormat('pt-BR', {
+  const handleFormat = (inputValue: string) => {
+    // Verifica se inputValue é uma string antes de usar replace
+    if (typeof inputValue === 'string') {
+      const numericValue = inputValue.replace(/[^0-9]/g, '')
+      const formattedValue = formatCurrency(numericValue)
+
+      setValor(formattedValue)
+    }
+  }
+
+  const formatCurrency = (numericValue: string) => {
+    const valueInCents = parseFloat(numericValue) / 100
+
+    return new Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
-    }).format(parseFloat(numericValue) / 100) // Converta para centavos
+    }).format(valueInCents)
+  }
 
-    setValor(formattedValue)
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleFormat(e.target.value)
   }
 
   const renderServiceContent = () => {
@@ -67,7 +86,7 @@ export default function Service({ params }: ServiceProps) {
             label="Por gentileza, diga-nos qual o valor inicial que você pretende investir:"
             value={valor}
             placeholder="R$"
-            onChange={(e) => handleFormat({ value: e.target.value })}
+            onChange={handleChange}
             name="valor"
           />
         )
@@ -103,7 +122,7 @@ export default function Service({ params }: ServiceProps) {
               type="text"
               placeholder="R$"
               value={valor}
-              onChange={(e) => handleFormat({ value: e.target.value })}
+              onChange={handleChange}
             />
           </>
         )
@@ -140,7 +159,7 @@ export default function Service({ params }: ServiceProps) {
               placeholder="R$"
               name="valor"
               value={valor}
-              onChange={(e) => handleFormat({ value: e.target.value })}
+              onChange={handleChange}
             />
           </>
         )
@@ -153,8 +172,8 @@ export default function Service({ params }: ServiceProps) {
             type={'text'}
             placeholder="R$"
             value={valor}
-            onChange={(e) => handleFormat({ value: e.target.value })}
-            name="investimento"
+            onChange={handleChange}
+            name="valor"
           />
         )
       case 'credito-pf-pj':
@@ -185,7 +204,7 @@ export default function Service({ params }: ServiceProps) {
               type={'text'}
               placeholder="R$"
               value={valor}
-              onChange={(e) => handleFormat({ value: e.target.value })}
+              onChange={handleChange}
               name={'valor'}
             />
           </>
@@ -197,7 +216,7 @@ export default function Service({ params }: ServiceProps) {
             que deseja financiar:"
             type={'text'}
             value={valor}
-            onChange={(e) => handleFormat({ value: e.target.value })}
+            onChange={handleChange}
             placeholder="R$"
             name={'valor'}
           />
@@ -210,7 +229,7 @@ export default function Service({ params }: ServiceProps) {
             type={'text'}
             placeholder="R$"
             value={valor}
-            onChange={(e) => handleFormat({ value: e.target.value })}
+            onChange={handleChange}
             name={'valor'}
           />
         )
@@ -246,7 +265,7 @@ export default function Service({ params }: ServiceProps) {
               placeholder="R$"
               name={'valor'}
               value={valor}
-              onChange={(e) => handleFormat({ value: e.target.value })}
+              onChange={handleChange}
             />
           </>
         )
@@ -281,7 +300,7 @@ export default function Service({ params }: ServiceProps) {
               type={'text'}
               placeholder="R$"
               value={valor}
-              onChange={(e) => handleFormat({ value: e.target.value })}
+              onChange={handleChange}
               name={'valor'}
             />
           </>
@@ -294,7 +313,7 @@ export default function Service({ params }: ServiceProps) {
             type={'text'}
             placeholder="R$"
             value={valor}
-            onChange={(e) => handleFormat({ value: e.target.value })}
+            onChange={handleChange}
             name={'valor'}
           />
         )
@@ -307,7 +326,7 @@ export default function Service({ params }: ServiceProps) {
             placeholder="R$"
             name={'valor'}
             value={valor}
-            onChange={(e) => handleFormat({ value: e.target.value })}
+            onChange={handleChange}
           />
         )
       case 'cambio':
@@ -402,13 +421,14 @@ export default function Service({ params }: ServiceProps) {
               name="cpfCnpj"
             />
 
-            <InputMask
+            <Input
               label="Confirme também seu número de sua conta
              bancária da Norwe Banking:"
-              required
-              mask={`9999-9`}
+              value={conta}
+              onChange={handleChangeConta}
               placeholder="0000-0"
               name="conta"
+              maxLength={7}
             />
 
             <p className="text-zinc-400 text-xs">
