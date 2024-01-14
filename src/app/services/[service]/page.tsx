@@ -1,8 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
-
-import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 import { Input } from '@/components/Input'
 import { Button } from '@/components/Button'
@@ -19,8 +17,6 @@ import {
 
 import { InputMask } from '@/components/InputMask'
 
-import NumberFormat from 'react-number-format'
-
 interface ServiceProps {
   params: {
     service: string
@@ -28,43 +24,40 @@ interface ServiceProps {
 }
 
 export default function Service({ params }: ServiceProps) {
-
-  const router = useRouter()
-
   const [cpfCnpj, setCpfCnpj] = useState('')
   const [valor, setValor] = useState()
 
   const handleChangeCpfCnpj = (e: string) => {
-    const inputValue = e.target.value;
+    const inputValue = e.target.value
     const numericValue = inputValue.replace(/[^0-9]/g, '')
 
     if (numericValue.length <= 11) {
       setCpfCnpj(numericValue.replace(/(\d{3})(\d{3})(\d{3})/, '$1.$2.$3-'))
     } else if (numericValue.length <= 14) {
-      setCpfCnpj(numericValue.replace(/(\d{2})(\d{3})(\d{3})(\d{4})/, '$1.$2.$3/$4-'))
+      setCpfCnpj(
+        numericValue.replace(/(\d{2})(\d{3})(\d{3})(\d{4})/, '$1.$2.$3/$4-'),
+      )
     }
 
     if (inputValue.length < cpfCnpj.length) {
       setCpfCnpj(inputValue)
     }
-
   }
 
   const handleFormat = (values) => {
-    const { value } = values;
+    const { value } = values
     // Remova todos os caracteres não numéricos
-    const numericValue = value.replace(/[^0-9]/g, '');
+    const numericValue = value.replace(/[^0-9]/g, '')
     // Formate o valor
     const formattedValue = new Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
-    }).format(parseFloat(numericValue) / 100); // Converta para centavos
+    }).format(parseFloat(numericValue) / 100) // Converta para centavos
 
-    setValor(formattedValue);
-  };
-
+    setValor(formattedValue)
+  }
 
   const renderServiceContent = () => {
     switch (params.service) {
@@ -73,16 +66,15 @@ export default function Service({ params }: ServiceProps) {
           <Input
             label="Por gentileza, diga-nos qual o valor inicial que você pretende investir:"
             value={valor}
-            placeholder='R$'
+            placeholder="R$"
             onChange={(e) => handleFormat({ value: e.target.value })}
-            name='valor'
+            name="valor"
           />
         )
 
       case 'consorcio':
         return (
           <>
-
             <h1 className="text-title-service text-sm font-medium pb-2 ">
               Qual tipo de consórcio você está buscando?
             </h1>
@@ -108,12 +100,11 @@ export default function Service({ params }: ServiceProps) {
             <Input
               label="Por gentileza, diga-nos qual o valor da carta que
               está buscando?"
-              type='text'
-              placeholder='R$'
+              type="text"
+              placeholder="R$"
               value={valor}
               onChange={(e) => handleFormat({ value: e.target.value })}
             />
-
           </>
         )
       case 'seguros':
@@ -179,8 +170,12 @@ export default function Service({ params }: ServiceProps) {
               <SelectContent>
                 <SelectGroup>
                   <SelectLabel>Crédito</SelectLabel>
-                  <SelectItem value="Pessoa Física (PF)">Pessoa Física (PF)</SelectItem>
-                  <SelectItem value="Pessoa Jurídica (PJ)">Pessoa Jurídica (PJ)</SelectItem>
+                  <SelectItem value="Pessoa Física (PF)">
+                    Pessoa Física (PF)
+                  </SelectItem>
+                  <SelectItem value="Pessoa Jurídica (PJ)">
+                    Pessoa Jurídica (PJ)
+                  </SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -222,7 +217,6 @@ export default function Service({ params }: ServiceProps) {
       case 'consignado':
         return (
           <>
-
             <h1 className="text-title-service text-sm font-medium pb-2 ">
               Qual tipo de Consignado você procura?
             </h1>
@@ -234,10 +228,14 @@ export default function Service({ params }: ServiceProps) {
                 <SelectGroup>
                   <SelectLabel>Consignado</SelectLabel>
                   <SelectItem value="Privado">Privado</SelectItem>
-                  <SelectItem value="Servidor Público">Servidor Público</SelectItem>
+                  <SelectItem value="Servidor Público">
+                    Servidor Público
+                  </SelectItem>
                   <SelectItem value="INSS">INSS</SelectItem>
                   <SelectItem value="Militar">Militar</SelectItem>
-                  <SelectItem value="Convênio com banco autorizado">Convênio com banco autorizado</SelectItem>
+                  <SelectItem value="Convênio com banco autorizado">
+                    Convênio com banco autorizado
+                  </SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -266,8 +264,12 @@ export default function Service({ params }: ServiceProps) {
                 <SelectGroup>
                   <SelectLabel>Serviço Agro</SelectLabel>
                   <SelectItem value="Crédito rural">Crédito rural</SelectItem>
-                  <SelectItem value="Estruturação de CRA">Estruturação de CRA</SelectItem>
-                  <SelectItem value="Estruturação de FIAGRO">Estruturação de FIAGRO</SelectItem>
+                  <SelectItem value="Estruturação de CRA">
+                    Estruturação de CRA
+                  </SelectItem>
+                  <SelectItem value="Estruturação de FIAGRO">
+                    Estruturação de FIAGRO
+                  </SelectItem>
                   <SelectItem value="Financiamento">Financiamento</SelectItem>
                   <SelectItem value="Consórcio">Consórcio</SelectItem>
                   <SelectItem value="Seguro">Seguro</SelectItem>
@@ -365,14 +367,30 @@ export default function Service({ params }: ServiceProps) {
           {params.service === 'credito-pf-pj' && 'Crédito PF/PJ'}
           {params.service === 'planejamento-de-vida' && 'Planejamento de Vida'}
           {params.service === 'seguros' && 'Seguros'}
-          {params.service === 'servicos-ao-agronegocio' && 'Serviços ao Agronegócio'}
+          {params.service === 'servicos-ao-agronegocio' &&
+            'Serviços ao Agronegócio'}
         </h1>
         <div className=" mt-5 flex flex-col gap-4 ">
-          <form action="https://formsubmit.co/nova.oportunidade@norwe.com.br" method="POST">
+          <form
+            action="https://formsubmit.co/nova.oportunidade@norwe.com.br"
+            method="POST"
+          >
             {renderServiceContent()}
-            <input type="hidden" name="email" value="demanda.app@norwe.com.br" />
-            <input type="hidden" name="_next" value="https://norweservices.vercel.app/success" />
-            <input type="hidden" name="_subject" value="Nova oportunidade - Norwe Serviços" />
+            <input
+              type="hidden"
+              name="email"
+              value="demanda.app@norwe.com.br"
+            />
+            <input
+              type="hidden"
+              name="_next"
+              value="https://norweservices.vercel.app/success"
+            />
+            <input
+              type="hidden"
+              name="_subject"
+              value="Nova oportunidade - Norwe Serviços"
+            />
             <input type="hidden" name="_captcha" value="false" />
 
             <Input
