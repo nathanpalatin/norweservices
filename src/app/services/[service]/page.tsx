@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 import { useRouter } from 'next/navigation'
 
@@ -16,7 +16,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+
 import { InputMask } from '@/components/InputMask'
+
+import NumberFormat from 'react-number-format'
 
 interface ServiceProps {
   params: {
@@ -26,28 +29,53 @@ interface ServiceProps {
 
 export default function Service({ params }: ServiceProps) {
 
-  //amount.charAt(0) !== 'R$' ? ('R$' + amount.substr(1)) : (amount)
-
   const router = useRouter()
 
-  const [mask, setMask] = useState('')
+  const [cpfCnpj, setCpfCnpj] = useState('')
+  const [valor, setValor] = useState()
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault()
-    e.target.submit()
+  const handleChangeCpfCnpj = (e) => {
+    const inputValue = e.target.value;
+    const numericValue = inputValue.replace(/[^0-9]/g, '')
+
+    if (numericValue.length <= 11) {
+      setCpfCnpj(numericValue.replace(/(\d{3})(\d{3})(\d{3})/, '$1.$2.$3-'))
+    } else if (numericValue.length <= 14) {
+      setCpfCnpj(numericValue.replace(/(\d{2})(\d{3})(\d{3})(\d{4})/, '$1.$2.$3/$4-'))
+    }
+
+    if (inputValue.length < cpfCnpj.length) {
+      setCpfCnpj(inputValue)
+    }
+
   }
+
+  const handleFormat = (values) => {
+    const { value } = values;
+    // Remova todos os caracteres não numéricos
+    const numericValue = value.replace(/[^0-9]/g, '');
+    // Formate o valor
+    const formattedValue = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(parseFloat(numericValue) / 100); // Converta para centavos
+
+    setValor(formattedValue);
+  };
+
 
   const renderServiceContent = () => {
     switch (params.service) {
       case 'investimentos':
         return (
           <Input
-            label={
-              'Por gentileza, diga-nos qual o valor inicial que você pretende investir:'
-            }
-            type={'text'}
-            placeholder="R$"
-            name="investimento"
+            label="Por gentileza, diga-nos qual o valor inicial que você pretende investir:"
+            value={valor}
+            placeholder='R$'
+            onChange={(e) => handleFormat({ value: e.target.value })}
+            name='valor'
           />
         )
 
@@ -80,9 +108,10 @@ export default function Service({ params }: ServiceProps) {
             <Input
               label="Por gentileza, diga-nos qual o valor da carta que
               está buscando?"
-              type={'text'}
-              placeholder="R$"
-              name={'seila'}
+              type='text'
+              placeholder='R$'
+              value={valor}
+              onChange={(e) => handleFormat({ value: e.target.value })}
             />
 
           </>
@@ -119,6 +148,8 @@ export default function Service({ params }: ServiceProps) {
               type={'text'}
               placeholder="R$"
               name="valor"
+              value={valor}
+              onChange={(e) => handleFormat({ value: e.target.value })}
             />
           </>
         )
@@ -130,6 +161,8 @@ export default function Service({ params }: ServiceProps) {
             }
             type={'text'}
             placeholder="R$"
+            value={valor}
+            onChange={(e) => handleFormat({ value: e.target.value })}
             name="investimento"
           />
         )
@@ -156,6 +189,8 @@ export default function Service({ params }: ServiceProps) {
             você busca proteger?"
               type={'text'}
               placeholder="R$"
+              value={valor}
+              onChange={(e) => handleFormat({ value: e.target.value })}
               name={'seila'}
             />
           </>
@@ -166,8 +201,10 @@ export default function Service({ params }: ServiceProps) {
             label="Por gentileza, diga-nos qual o valor do veículo
             que deseja financiar:"
             type={'text'}
+            value={valor}
+            onChange={(e) => handleFormat({ value: e.target.value })}
             placeholder="R$"
-            name={'seila'}
+            name={'valor'}
           />
         )
       case 'financiamento-imobiliario':
@@ -177,7 +214,9 @@ export default function Service({ params }: ServiceProps) {
             que deseja financiar:"
             type={'text'}
             placeholder="R$"
-            name={'seila'}
+            value={valor}
+            onChange={(e) => handleFormat({ value: e.target.value })}
+            name={'valor'}
           />
         )
       case 'consignado':
@@ -207,7 +246,9 @@ export default function Service({ params }: ServiceProps) {
             está buscando?"
               type={'text'}
               placeholder="R$"
-              name={'seila'}
+              name={'valor'}
+              value={valor}
+              onChange={(e) => handleFormat({ value: e.target.value })}
             />
           </>
         )
@@ -237,7 +278,9 @@ export default function Service({ params }: ServiceProps) {
               label="Qual tipo de Serviço Agro você busca?"
               type={'text'}
               placeholder="R$"
-              name={'seila'}
+              value={valor}
+              onChange={(e) => handleFormat({ value: e.target.value })}
+              name={'valor'}
             />
           </>
         )
@@ -248,7 +291,9 @@ export default function Service({ params }: ServiceProps) {
             que você deseja colocar como garantia:"
             type={'text'}
             placeholder="R$"
-            name={'seila'}
+            value={valor}
+            onChange={(e) => handleFormat({ value: e.target.value })}
+            name={'valor'}
           />
         )
       case 'investimento-imobiliario':
@@ -258,7 +303,9 @@ export default function Service({ params }: ServiceProps) {
             que você está procurando para comprar:"
             type={'text'}
             placeholder="R$"
-            name={'seila'}
+            name={'valor'}
+            value={valor}
+            onChange={(e) => handleFormat({ value: e.target.value })}
           />
         )
       case 'cambio':
@@ -268,7 +315,7 @@ export default function Service({ params }: ServiceProps) {
             que deseja realizar:"
             type={'text'}
             placeholder="R$"
-            name={'seila'}
+            name={'valor'}
           />
         )
 
@@ -328,18 +375,11 @@ export default function Service({ params }: ServiceProps) {
             <input type="hidden" name="_subject" value="Nova oportunidade - Norwe Serviços" />
             <input type="hidden" name="_captcha" value="false" />
 
-            <InputMask
+            <Input
               label="Precisamos também que confirme seu CPF ou CNPJ de sua conta Norwe:"
               placeholder="000.000.000-00"
-              mask={mask}
-              onChange={(e) => {
-                const numericValue = e.target.value.replace(/[^0-9]/g, '')
-                if (numericValue.length > 11) {
-                  setMask('99.999.999/9999-99')
-                } else {
-                  setMask('999.999.999-99')
-                }
-              }}
+              value={cpfCnpj}
+              onChange={handleChangeCpfCnpj}
               required
               name="cpfCnpj"
             />
