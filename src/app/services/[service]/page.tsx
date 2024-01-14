@@ -34,7 +34,7 @@ export default function Service({ params }: ServiceProps) {
   const [cpfCnpj, setCpfCnpj] = useState('')
   const [valor, setValor] = useState()
 
-  const handleChangeCpfCnpj = (e) => {
+  const handleChangeCpfCnpj = (e: string) => {
     const inputValue = e.target.value;
     const numericValue = inputValue.replace(/[^0-9]/g, '')
 
@@ -191,7 +191,7 @@ export default function Service({ params }: ServiceProps) {
               placeholder="R$"
               value={valor}
               onChange={(e) => handleFormat({ value: e.target.value })}
-              name={'seila'}
+              name={'valor'}
             />
           </>
         )
