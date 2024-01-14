@@ -1,7 +1,7 @@
-import { Header } from "@/components/Header";
-import { Services } from "@/components/Services";
-import Image from "next/image";
-import Link from "next/link";
+import { Header } from '@/components/Header'
+import { Services } from '@/components/Services'
+import Image from 'next/image'
+import Link from 'next/link'
 
 import {
   FaSignal,
@@ -16,7 +16,7 @@ import {
   FaDollarSign,
   FaEnvira,
   FaShieldAlt,
-} from "react-icons/fa";
+} from 'react-icons/fa'
 
 export default function Home() {
   return (
@@ -83,7 +83,7 @@ export default function Home() {
       <div className="relative flex justify-center flex-col items-center gap-3 mb-3 mt-12">
         <Image
           className="rounded-lg"
-          src={"/mockup_creditcardok.png"}
+          src={'/mockup_creditcardok.png'}
           quality={100}
           alt="Mockup credit Norwe"
           width={340}
@@ -93,12 +93,12 @@ export default function Home() {
           Em breve
         </h1>
         <Link
-          href={"/services/cartao"}
+          href={'/services/cartao'}
           className="text-title-service font-medium mt-2"
         >
           Solicitar meu cartão físico
         </Link>
       </div>
     </>
-  );
+  )
 }

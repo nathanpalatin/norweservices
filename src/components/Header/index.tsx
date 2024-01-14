@@ -1,15 +1,15 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 interface HeaderProps {
-  title: string;
-  variant?: boolean;
+  title: string
+  variant?: boolean
 }
 
 export function Header({ title, variant }: HeaderProps) {
   return (
     <div className="relative">
       <Image
-        src={"/background_top.png"}
+        src={'/background_top.png'}
         className="shadow-lg shadow-zinc-700 border-0"
         alt="Header"
         priority
@@ -40,7 +40,7 @@ export function Header({ title, variant }: HeaderProps) {
             {title}
           </h1>
           <Image
-            src={"/ok.png"}
+            src={'/ok.png'}
             alt="Header"
             priority
             className="absolute
@@ -53,7 +53,7 @@ export function Header({ title, variant }: HeaderProps) {
 
       {!variant && (
         <Image
-          src={"/top_bar.png"}
+          src={'/top_bar.png'}
           alt="Top Bar"
           priority
           className="right-0 -bottom-1 absolute"
@@ -62,5 +62,5 @@ export function Header({ title, variant }: HeaderProps) {
         />
       )}
     </div>
-  );
+  )
 }

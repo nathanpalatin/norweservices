@@ -1,6 +1,6 @@
 interface ButtonProps {
-  title: string;
-  type: "submit" | "reset" | "button";
+  title: string
+  type: 'submit' | 'reset' | 'button'
 }
 
 export function Button({ title, type }: ButtonProps) {
@@ -11,5 +11,5 @@ export function Button({ title, type }: ButtonProps) {
     >
       {title}
     </button>
-  );
+  )
 }

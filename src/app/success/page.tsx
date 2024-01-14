@@ -1,9 +1,9 @@
-import { Header } from "@/components/Header";
+import { Header } from '@/components/Header'
 
 export default function Success() {
   return (
     <>
-      <Header variant title={"Informações enviadas"} />
+      <Header variant title={'Informações enviadas'} />
 
       <div className="container mx-auto mt-2 p-12 sm:p-8">
         <h1>Agora é só aguardar.</h1>
@@ -26,5 +26,5 @@ export default function Success() {
         </div>
       </div>
     </>
-  );
+  )
 }
