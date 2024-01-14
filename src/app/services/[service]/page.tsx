@@ -144,7 +144,7 @@ export default function Service({ params }: ServiceProps) {
                   <SelectItem value="Imóvel">Imóvel</SelectItem>
                   <SelectItem value="Moto">Moto</SelectItem>
                   <SelectItem value="Vida">Vida</SelectItem>
-                  <SelectItem value="Saúde">Saúde</SelectItem>
+                  <SelectItem value="Plano de Saúde">Plano de Saúde</SelectItem>
                   <SelectItem value="Viagem">Viagem</SelectItem>
                   <SelectItem value="Empresarial">Empresarial</SelectItem>
                   <SelectItem value="Obras">Obras</SelectItem>
@@ -153,8 +153,7 @@ export default function Service({ params }: ServiceProps) {
               </SelectContent>
             </Select>
             <Input
-              label="Por gentileza, diga-nos qual o valor do bem que 
-              você busca proteger?"
+              label="Valor desejado da apólice do seguro:"
               type={'text'}
               placeholder="R$"
               name="valor"
