@@ -27,7 +27,7 @@ export default function Service({ params }: ServiceProps) {
   const [cpfCnpj, setCpfCnpj] = useState('')
   const [valor, setValor] = useState()
 
-  const handleChangeCpfCnpj = (e: string) => {
+  const handleChangeCpfCnpj = (e: unknown) => {
     const inputValue = e.target.value
     const numericValue = inputValue.replace(/[^0-9]/g, '')
 
